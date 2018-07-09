@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    /* Always set the map height explicitly to define the size of the div
+     * element that contains the map. */
+     * {
+       margin:0;
+       padding:0;
+     }
+     #wrap {
+       height:100%;
+     }
+    #map {
+      height: 100%;
+
+    }
+    #header {
+      height:60px;
+      padding:20px;
+      background-color: #ff3737;
+      color:#ffffff;
+    }
+    #side {
+      width:200px;
+      height:100%;
+      position: absolute;
+      top:100px;
+      left:0;
+      background-color: #ffffff;
+    }
+    #side li a {
+      display: block;
+      padding:15px;
+    }
+    #side li a:hover {
+      background-color: #eeeeee;
+    }
+    /* Optional: Makes the sample page fill the window. */
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+  </style>
+</head>
+<body>
+  <div id="wrap">
+
+    <div id="header">
+      <h1>ライブハウスマップ</h1>
+    </div>
+    <div id="map"></div>
+    <div id="side">
+
+    </div>
+
+  </div>
+
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCQaNiubwHEomqqROwiyNnthYfNbJt4Vfo&callback="></script>
+  <script type="text/javascript">
+
+    window.onload = () => {
+
+        let map = new google.maps.Map(document.getElementById('map'), {
+          center: {lat: 35.712832, lng: 139.701043},
+          zoom: 17
+        });
+
+        let infoWindow = [];
+        let marker = [];
+
+        $.ajax({
+          type: 'GET',
+          url: 'http://humandgd.html.xdomain.jp/data.jsonp',
+          dataType: 'jsonp',
+          jsonpCallback: 'userData',
+          success: (json) => {
+            let len = json.length;
+            //var iconBase = 'https://maps.google.com/mapfiles/kml/shapes/';
+            const side = document.getElementById('side');
+
+            for(let i=0; i < len; i++){
+              side.insertAdjacentHTML('beforeend',`<div class="listName">${json[i].name}</div>`);
+               marker[i] = new google.maps.Marker({
+                 position: {lat: json[i].lat, lng: json[i].lng},
+                 animation: google.maps.Animation.DROP,
+                 //icon: iconBase + 'info-i_maps.png',
+                 map: map
+               });
+
+               infoWindow[i]　= new google.maps.InfoWindow({
+                content: `<div class="venue">${json[i].name}<br /><a href="${json[i].url}">${json[i].url}</a>
+
+
+                </div>`
+               });
+             markerEvent(i);
+            }
+            let list = document.querySelectorAll('.listName');
+            for(let i=0; i < len; i++){
+              list[i].addEventListener('click', () => {
+                 infoWindow[i].open(map, marker[i]);
+              });
+            }
+
+          }
+        });
+
+        let markerEvent = (i) => {
+          marker[i].addListener('click', () => {
+            infoWindow[i].open(map, marker[i]);
+          });
+        }
+
+  }
+
+  </script>
+</body>
+</html>

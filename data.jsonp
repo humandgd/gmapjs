@@ -1,0 +1,57 @@
+userData(
+[
+
+    {
+        "name": "秘密の場所1",
+        "address": "東京都新宿区高田馬場2-1-1",
+        "url": "http://www.yahoo.co.jp/",
+        "lat": 35.713549,
+        "lng": 139.703424,
+        "area": "tokyo"
+    },
+    {
+        "name": "クラブ フェーズ ",
+        "address": "東京都新宿区高田馬場2-1-1",
+        "url": "http://www.club-phase.com/",
+        "lat": 35.714674,
+        "lng": 139.706237,
+        "area": "tokyo"
+
+    },
+    {
+        "name": "秘密の場所3",
+        "address": "東京都新宿区高田馬場2-1-1",
+        "url": "http://www.example.com/",
+        "lat": 35.59030,
+        "lng": 139.79022,
+        "area": "tokyo"
+
+    },
+    {
+        "name": "秘密の場所4",
+        "address": "東京都新宿区高田馬場2-1-1",
+        "url": "http://www.example.com/",
+        "lat": 35.59111,
+        "lng": 139.79049,
+        "area": "tokyo"
+
+    },
+    {
+        "name": "秘密の場所5",
+        "address": "大阪府大阪市中央区西心斎橋2-9-36 カサドマートビルB1F/B2F",
+        "url": "http://musicbarhokage.net/",
+        "lat": 34.671035,
+        "lng": 135.499163,
+        "area": "osaka"
+
+    },
+    {
+        "name": "難波ベアーズ",
+        "address": "大阪府大阪市浪速区難波中3-14-5 新日本難波ビルB1",
+        "url": "http://namba-bears.main.jp/",
+        "lat": 34.659753,
+        "lng": 135.499911,
+        "area": "osaka"
+    }
+]
+);
